@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pension Age Calculator</title>
+   
+    <style>
+        /* General Reset */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Container */
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Header */
+header h1 {
+    color: #4CAF50;
+    margin-bottom: 10px;
+}
+
+header p {
+    color: #666;
+}
+
+/* Form */
+form {
+    margin: 20px 0;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    background: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #45a049;
+}
+
+/* Result Section */
+.result {
+    margin-top: 30px;
+    background: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.result h2 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.result p {
+    margin: 5px 0;
+}
+
+/* Footer */
+footer {
+    margin-top: 30px;
+    font-size: 14px;
+    color: #aaa;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Pension Age Calculator</h1>
+            <p>Find out when you can retire based on your birth year.</p>
+        </header>
+
+        <main>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="birth_year">Enter your birth year:</label>
+                    <input type="number" id="birth_year" name="birth_year" placeholder="e.g., 1985" required>
+                </div>
+                <button type="submit">Calculate</button>
+            </form>
+
+            {% if result %}
+                <div class="result">
+                    <h2>Results</h2>
+                    <p><strong>Birth Year:</strong> {{ result.birth_year }}</p>
+                    <p><strong>Pension Age:</strong> {{ result.pension_age }}</p>
+                    <p><strong>Estimated Retirement Year:</strong> {{ result.retirement_year }}</p>
+                </div>
+            {% endif %}
+        </main>
+
+        <footer>
+            <p>© 2024 Pension Calculator. All Rights Reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
