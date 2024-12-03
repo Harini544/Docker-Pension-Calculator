@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: pension 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pension
+  template:
+    metadata:
+      labels:
+        app: pension 
+    spec:
+      containers:
+        - name: pension 
+          image: azureregistry9.azurecr.io/pension
+          ports:
+          - containerPort: 8000
